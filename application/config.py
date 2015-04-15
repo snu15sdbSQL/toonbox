@@ -2,6 +2,7 @@
 from application import app
 
 
+
 app.config.update(dict(
     SQLALCHEMY_DATABASE_URI='mysql://root:db@localhost:3306/toonbox',
     DEBUG=True,
