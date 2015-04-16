@@ -1,0 +1,20 @@
+body {
+	background-image: url('../res/img/wallpaper.jpg');
+	background-size: cover;
+	background-repeat: no-repeat;
+	min-height: 600px;
+}
+
+#form_container {
+	margin-top: 150px;
+	margin-left: 150px;
+	width: 400px;
+}
+
+.login_label {
+	color: white;
+}
+
+#form_title {
+	color: white;
+}
