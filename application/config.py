@@ -4,10 +4,10 @@ from application import app
 
 
 app.config.update(dict(
-    SQLALCHEMY_DATABASE_URI='mysql://root:db@localhost:3306/toonbox',
+    # SQLALCHEMY_DATABASE_URI='mysql://root:db@localhost:3306/toonbox?charset=utf8',
+    SQLALCHEMY_DATABASE_URI='mysql://root:db@54.65.177.207:3306/toonbox?charset=utf8',
     DEBUG=True,
     SECRET_KEY='toonbox key',
-    # SQLALCHEMY_DATABASE_URI='mysql://hermes:hermes_pass@10.113.168.97:3306/line_hermes?charset=utf8',
     migration_directory='migrations',
     compare_type=True
 ))
