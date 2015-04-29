@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+	<title>Toonbox</title>
+	<meta charset="utf-8">
+	
+
+	<script src="{{ url_for('static', filename='js/jquery-1.11.1.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/bootstrap.min.js')}}"></script>
+
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/layout.css')}}">
+
+	{% block head %}
+	{% endblock %}
+
+</head>
+
+<body>
+
+	<div id = "container">
+
+		<div class="page-header">
+			<h1 id = "page_header">TOONBOX</h1>
+		</div>
+		<div class = "row" id = "nav_div">
+			<ul class="nav nav-justified">
+				<li role="presentation" class="nav_category"><a href="{{ url_for('main')}}">메인</a></li>
+				<li role="presentation" class="nav_category"><a href="{{ url_for('evaluate')}}">평가하기</a></li>
+				<li role="presentation" class="nav_category"><a href="{{ url_for('search')}}">웹툰검색</a></li>
+				<li role="presentation" class="nav_category"><a href="{{ url_for('evaluate_history')}}">평가한 웹툰</a></li>
+			</ul>
+		</div>
+
+		{% block body %}
+		{% endblock %}
+
+		
+	</div>
+
+</body>
+</html>

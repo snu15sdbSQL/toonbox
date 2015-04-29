@@ -1,0 +1,23 @@
+#container {
+	width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#page_header {
+	font-weight: 700;
+}
+
+#nav_div {
+	margin-bottom: 50px;
+	background-color: #c5eff7;
+}
+
+.nav_category > a{
+	color: black;
+}
+
+.nav_category > li > a:hover{
+	color: yellow;
+	background-color: white;
+};
