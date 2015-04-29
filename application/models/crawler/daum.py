@@ -34,7 +34,7 @@ toons = []	#list of each webtoons' dict
 
 for item in thumbs.find_all('li'):
 	cnt += 1
-	
+
 	#dict for each webtoon's information
 	toon = {}
 
@@ -46,7 +46,7 @@ for item in thumbs.find_all('li'):
 	toon['title'] = toon_title.text
 	toon_author = item.find('span', 'txt_name')
 	#in case of temporary unpublishing
-	if toon_author == None: 
+	if toon_author == None:
 		continue
 	toon['author'] = toon_author.text
 	toon['rating'] = item.find('strong', 'point').text
