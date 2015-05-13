@@ -1,4 +1,4 @@
-import urllib, os
+import urllib, os, sys
 from bs4 import BeautifulSoup
 
 def crawl_naver(path):
@@ -30,7 +30,7 @@ def crawl_naver(path):
 			toon['genre'] = genre
 			toon['finished'] = int(item.select('.finish') == [])
 			toon['title'] = item.div.a['title']
-	 		toon['rating'] = \
+            toon['rating'] = \
 				item.find_all('div', 'rating_type')[0].strong.text
 			toon['last_update'] = item.select('.date2')[0].text.replace('.','-')
 			toon['introduction'] = detail.find('p').text.replace('\n', '')
@@ -41,11 +41,15 @@ def crawl_naver(path):
 				save_path = path + 'naver/'
 				if not os.path.exists(save_path):
 					os.makedirs(save_path)
-				img_url = item.div.a.img['src']
+				img_url = toon_soup.select('.thumb img')[0]['src']
 				img_filename = save_path + str(cnt) + ".jpg"
 				toon['picture'] = img_filename
 				urllib.urlretrieve(img_url, img_filename)
 
-			print "\ttitle:" + toon['title'] + "\tauthor:" + toon['author'] + "\trating:" + toon['rating'] + "\tintroduction:" + toon['introduction']
+			#progress bar
+			sys.stdout.write("\r" + str(cnt) + " " + '#'*(cnt%10) + ' '*(10-cnt%10)
+				+ toon['title'][:30] + ' '*(30-len(toon['title'])))
+			sys.stdout.flush()
 
+			# print "\ttitle:" + toon['title'] + "\tauthor:" + toon['author'] + "\trating:" + toon['rating'] + "\tintroduction:" + toon['introduction']
 	return toons
