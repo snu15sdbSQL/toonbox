@@ -19,3 +19,8 @@ def search():
 @app.route('/evaluate_history')
 def evaluate_history():
    return render_template('evaluate_history.html')
+
+@app.route('/asjkf')
+def asjkf():
+	webtoons = recommend.get()
+	return render_template('sea.html', webtoons= webtoons)
