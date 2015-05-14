@@ -17,11 +17,11 @@ driver = webdriver.Firefox()
 driver.implicitly_wait(10)
 driver.get("http://m.webtoon.daum.net/m/#page_no=26&type=scoreList")
 try: #wait until list is fully loaded
-    element = WebDriverWait(driver, 10).until(
-        EC.presence_of_element_located((By.CSS_SELECTOR, ".list_comm > ul > li"))
-    )
+	element = WebDriverWait(driver, 20).until(
+		EC.presence_of_element_located((By.CSS_SELECTOR, ".list_comm > ul > li"))
+	)
 finally:
-    html = driver.page_source
+	html = driver.page_source
 
 driver.quit()
 display.stop()
@@ -33,8 +33,12 @@ cnt = 0
 toons = []	#list of each webtoons' dict
 
 for item in thumbs.find_all('li'):
-	cnt += 1
+	#in case of temporary unpublishing
+	toon_author = item.find('span', 'txt_name')
+	if toon_author == None:
+		continue
 
+	cnt += 1
 	#dict for each webtoon's information
 	toon = {}
 
@@ -44,12 +48,21 @@ for item in thumbs.find_all('li'):
 	if span19 != None:
 		span19.replace_with('')
 	toon['title'] = toon_title.text
-	toon_author = item.find('span', 'txt_name')
-	#in case of temporary unpublishing
-	if toon_author == None:
-		continue
+
 	toon['author'] = toon_author.text
 	toon['rating'] = item.find('strong', 'point').text
+	toon['last_update'] = item.select('.time')[0].text[:10].replace('.','-')
+
+	#get each webtoon's page for detail
+	toon_url = "http://m.webtoon.daum.net/" + item.find('a', 'cont')['href'];
+	toon_html = urllib.urlopen(toon_url)
+	toon_soup = BeautifulSoup(toon_html, "lxml")
+
+	intro= soup.findAll(attrs={"property":"og:description"})
+	if len(intro) != 0:
+		toon['introduction'] = intro[0]['content'].rsplit('l',1)[0]
+	else:
+		toon['introduction'] = "ADULT TOON REQUIRES LOGIN. UPDATE IT MANUALLY"
 
 	toons.append(toon)
 
@@ -60,4 +73,4 @@ for item in thumbs.find_all('li'):
 	img_filename = "./daum/" + str(cnt) + ".jpg"
 	urllib.urlretrieve(img_url, img_filename)
 
-	print "id: " + str(cnt) + "\ttitle:" + toon['title'] + "\tauthor:" + toon['author'] + "\trating:" + toon['rating']
+	print "id: " + str(cnt) + "\ttitle:" + toon['title'] + "\tauthor:" + toon['author'] + "\trating:" + toon['rating'] + "\tlast_update:" + toon['last_update'] + "\tintro:" + toon['introduction']
