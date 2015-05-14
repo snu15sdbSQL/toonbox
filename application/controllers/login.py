@@ -3,7 +3,7 @@ from application import app
 from flask import Flask, redirect, request, url_for, render_template, session
 from application.models import user_manager
 
-# @app.route('/')
+@app.route('/')
 @app.route('/login', methods= ['GET','POST'])
 def login():
 	if request.method == 'GET':
