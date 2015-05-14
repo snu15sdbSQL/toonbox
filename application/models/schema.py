@@ -32,3 +32,9 @@ class User_Webtoon(db.Model):
 	webtoon 	= db.relationship('Webtoon', foreign_keys = [webtoon_id],
 		backref = db.backref('user_webtoons', cascade = 'all, delete-orphan', lazy = 'dynamic'))
 	score 		= db.Column(db.Integer)
+
+class Webtoon_Similarity(db.Model):
+	id = db.Column(db.Integer, primary_key = True)
+	webtoon_id1 = db.Column(db.Integer)
+	webtoon_id2 = db.Column(db.Integer)
+	similarity = db.Column(db.Integer)
