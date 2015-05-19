@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 
 maxbuf = 10485760
 
-### load html
+# ## load html
 # from pyvirtualdisplay import Display
 
 # from selenium import webdriver
@@ -54,7 +54,7 @@ for item in thumbs.find_all('li'):
 	span19 = toon_title.find('span', 'ico_comm')
 	if span19 != None:
 		span19.replace_with('')
-	toon['title'] = toon_title.text
+	toon['title'] = toon_title.text.strip()
 	toon['author'] = toon_author.text
 	toon['rating'] = item.find('strong', 'point').text
 	last_update = item.select('.time')[0].text
@@ -64,18 +64,22 @@ for item in thumbs.find_all('li'):
 	else:
 		toon['last_update'] = time.strftime("%Y-%m-%d")
 		toon['finished'] = 0
-	
+
 	#get each webtoon's page for detail
-	toon['url'] = "http://m.webtoon.daum.net/" + item.find('a', 'cont')['href'];
+	toon['url'] = "http://webtoon.daum.net/" + item.find('a', 'cont')['href'].replace('/m/', '/').replace('//', '/')
 	toon['site'] = "daum"
-	res = urllib2.urlopen(toon['url'])
+	try:
+		res = urllib2.urlopen(toon['url'])
+	except urllib2.HTTPError:
+		print "http://webtoon.daum.net/" + item.find('a', 'cont')['href']
+		print toon['url']
 	toon_html = res.read(maxbuf)
 	res.close
-	
+
 	toon_soup = BeautifulSoup(toon_html, "lxml")
 	intro= toon_soup.findAll(attrs={"property":"og:description"})
 	if len(intro) != 0:
-		toon['introduction'] = intro[0]['content'].rsplit('l',1)[0]
+		toon['introduction'] = intro[0]['content'].rsplit('l',1)[0].strip()
 	else:
 		toon['introduction'] = "ADULT TOON REQUIRES LOGIN. UPDATE IT MANUALLY"
 	toons.append(toon)
