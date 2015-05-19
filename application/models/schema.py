@@ -12,14 +12,14 @@ class User(db.Model):
 class Webtoon(db.Model):
 	id = db.Column(db.Integer, primary_key = True)
 	author = db.Column(db.String(30))
-	genre = db.Column(db.String(30))
+	site = db.Column(db.String(10))
 	finished = db.Column(db.Boolean, default = '0')
 	title = db.Column(db.String(40))
 	picture = db.Column(db.String(80))
 	rating = db.Column(db.Float)
-	last_update = db.Column(db.DateTime) 
+	last_update = db.Column(db.DateTime)
 	introduction = db.Column(db.String(150))
-
+	url = db.Column(db.String(200))
 
 # relationship tables
 
