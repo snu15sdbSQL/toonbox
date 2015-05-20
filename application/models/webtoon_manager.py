@@ -1,4 +1,5 @@
+from sqlalchemy import text
+from schema import Webtoon
 
-
-def recommend_webtoon(user_id):
-	return 3
+def get_all_webtoons (con):
+	return con.execute("select id from webtoon")
