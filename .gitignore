@@ -4,6 +4,7 @@ application/models/crawler/daum/*
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
+*.dump
 
 
 # Distribution / packaging
