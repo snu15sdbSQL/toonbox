@@ -37,4 +37,4 @@ class Webtoon_Similarity(db.Model):
 	id = db.Column(db.Integer, primary_key = True)
 	webtoon_id1 = db.Column(db.Integer)
 	webtoon_id2 = db.Column(db.Integer)
-	similarity = db.Column(db.Integer)
+	similarity = db.Column(db.Float)

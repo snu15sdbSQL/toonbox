@@ -1,9 +1,9 @@
 #-*- coding:utf-8 -*-
 from application import app
 from flask import Flask, redirect, url_for, render_template
-from application.models import similarity_manager
+from application.controllers import update_similarity
 
-# @app.route('/')
+@app.route('/')
 @app.route('/main')
 def main():
    return render_template('main.html')
@@ -21,11 +21,7 @@ def search():
 def evaluate_history():
    return render_template('evaluate_history.html')
 
-@app.route('/update_similarity')
-def update_similarity():
-   result = similarity_manager.test();
-   for row in result:
-	print(row[0])
-   con = similarity_manager.connect()
-   similarity_manager.update_similarity(con, 1, 2, 0.3)
+@app.route('/update_sim')
+def update_sim():
+   update_similarity.update_similarity()
    return render_template('main.html')

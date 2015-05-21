@@ -5,13 +5,12 @@
 
 
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bxslider/jquery.bxslider.css')}}" />
-	<script src="{{ url_for('static', filename='js/jquery.bxslider.min.js')}}"></script>
-	
 
+	<script src="{{ url_for('static', filename='js/jquery.bxslider.min.js')}}"></script>
 	<script>
 	$(document).ready(function(){
-  $('.bxslider').bxSlider();
-});
+  		$('.bxslider').bxSlider();
+	});
 	</script>
 
 {% endblock %}

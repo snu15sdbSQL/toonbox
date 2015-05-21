@@ -1,8 +1,41 @@
 {% extends "layout.html" %}
 
+{% block head %}
+        <link rel = "stylesheet" type = "text/css" href="{{ url_for('static', filename='css/evaluate.css')}}">
+{% endblock %}
+
+
 {% block body %}
 
-	평가 내역 
+
+
+<div class="row">
+<div class="col-4 pic1">
+        <ul>
+                <li><img src="{{ url_for('static', filename='res/img/cheeseinthetrap.png') }}" width="200"></li>
+                <li><img src="{{ url_for('static', filename='res/img/fashion_king.jpg') }}" width="200"></li>
+                <li><img src="{{ url_for('static', filename='res/img/chosun.jpg') }}" width="200"></li>
+        </ul>
+</div>
+
+<div class="col-4 pic2">
+        <ul>
+                <li><img src="{{ url_for('static', filename='res/img/grae.jpg') }}" width="200"></li>
+                <li><img src="{{ url_for('static', filename='res/img/narmstory.jpg') }}" width="200"></li>
+                <li><img src="{{ url_for('static', filename='res/img/youngcatolddog.jpg') }}" width="200"></li>
+        	<li><img src="{{ url_for('static', filename='res/img/cheeseinthetrap.png') }}" width="200"></li>
+	</ul>
+</div>
+
+<div class="col-4 pic3">
+        <ul>
+                <li><img src="{{ url_for('static', filename='res/img/narmstory.jpg') }}" width="200"></li>
+                <li><img src="{{ url_for('static', filename='res/img/fashion_king.jpg') }}" width="200"></li>
+                <li><img src="{{ url_for('static', filename='res/img/grae.jpg') }}" width="200"></li>
+        </ul>
+</div>
+
+</div>
 
 {% endblock %}
-		
+
