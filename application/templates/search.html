@@ -1,15 +1,16 @@
 {% extends "layout.html" %}
-
 {% block head %}
 	<script src="{{ url_for('static', filename='js/search.js')}}"></script>
 {% endblock %}
 
 {% block body %}
 
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/search_result.css')}}">
 	<div class="input-group">
 		<input id = "search_input" type="text" class="form-control" placeholder="제목으로 검색">
 		<div class="input-group-addon"><span id = "search_btn" class="glyphicon glyphicon-search"></span></div>
 	</div>
+	<div id="result"></div>
 
 {% endblock %}
 		

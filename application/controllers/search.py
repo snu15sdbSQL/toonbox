@@ -8,4 +8,4 @@ import json
 def get_webtoons_by_title():
 	title = request.form['title']
 	results = webtoon_manager.get_webtoons_by_title(title)
-	return json.dumps(results)
+	return render_template('search_result.html', results=results)

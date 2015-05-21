@@ -15,6 +15,7 @@ function get_webtoons_by_title(title) {
 	    data: {"title": title},
 	    success:function(response){
 		    console.log(response); 
+			$('#result').replaceWith(response);
 	    },
 	    error: function(){
 	      	console.log("error");

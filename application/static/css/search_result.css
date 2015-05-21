@@ -1,0 +1,16 @@
+.card { width: 300px; height: 93px; float: left; padding: 10px; }
+.card .thumb { float: left; width: 103px; height: 73px; }
+.card .thumb img { max-width:100%; max-height:100%; }
+.card .info { float: left; max-width: 60%; max-height: 73px; }
+.card h5 { margin-top: 5px; margin-bottom: 10px; }
+.desc	{
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  word-wrap: break-word;
+  -webkit-line-clamp: $lines-to-show;
+  overflow: hidden;
+  font-size: 11px;
+  color: gray;
+}
