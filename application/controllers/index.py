@@ -24,4 +24,4 @@ def evaluate_history():
 @app.route('/update_sim')
 def update_sim():
    update_similarity.update_similarity()
-   return render_template('main.html')
+   return 'success'

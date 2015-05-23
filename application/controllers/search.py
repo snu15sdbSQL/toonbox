@@ -8,4 +8,10 @@ import json
 def get_webtoons_by_title():
 	title = request.form['title']
 	results = webtoon_manager.get_webtoons_by_title(title)
-	return json.dumps(results)
+	lst = []
+	for result in results:
+		dic = {}
+		dic['title'] = result.title
+		dic['author'] = result.author
+		lst.append(dic)
+	return json.dumps(lst)
