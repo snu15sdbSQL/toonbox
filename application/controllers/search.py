@@ -7,11 +7,8 @@ import json
 @app.route('/get_webtoons_by_title', methods= ['POST'])
 def get_webtoons_by_title():
 	title = request.form['title']
-	results = webtoon_manager.get_webtoons_by_title(title)
-	lst = []
-	for result in results:
-		dic = {}
-		dic['title'] = result.title
-		dic['author'] = result.author
-		lst.append(dic)
-	return json.dumps(lst)
+	author = request.form['author']
+	is_finished = request.form['is_finished']
+	results = webtoon_manager.get_webtoons_by_title(title, author, is_finished)
+	return render_template('search_result.html', results=results)
+

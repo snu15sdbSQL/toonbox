@@ -1,9 +1,7 @@
 #-*- coding:utf-8 -*-
 from application import app
 from application import db
-from application.models import similarity_manager
-from application.models import uw_manager
-from application.models import webtoon_manager
+from application.models import similarity_manager, uw_manager, webtoon_manager
 
 def update_similarity():
 	con = db.engine.connect()

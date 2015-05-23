@@ -1,15 +1,38 @@
 {% extends "layout.html" %}
-
 {% block head %}
 	<script src="{{ url_for('static', filename='js/search.js')}}"></script>
+	<script src="{{ url_for('static', filename='js/jquery.raty.js')}}"></script>
+	<script>
+		var raty_img = "{{url_for('static', filename='res/raty/') }}";
+	</script>
+
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/search_result.css')}}">
 {% endblock %}
 
 {% block body %}
 
-	<div class="input-group">
-		<input id = "search_input" type="text" class="form-control" placeholder="제목으로 검색">
-		<div class="input-group-addon"><span id = "search_btn" class="glyphicon glyphicon-search"></span></div>
-	</div>
+
+	<form>
+		<div class="form-group">
+			<label>제목</label>
+			<input type="text" id = "search_input" class="form-control" placeholder="제목을 입력하세요">
+		</div>
+		<div class="form-group">
+			<label>작가</label>
+			<input type="text" id = "author_input" class="form-control"  placeholder="작가를 입력하세요">
+		</div>
+		<div class="checkbox">
+			<label>
+				<input type="checkbox" name = "finished" id = "finished_input"> 완결한 웹툰인가?
+			</label>
+		</div>
+		<button type="button" id = "search_btn" class="btn btn-default">검색</button>
+	</form>
+
+	<br>
+
+
+	<div id="result"></div>
 
 {% endblock %}
 		

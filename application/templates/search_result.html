@@ -1,39 +1,25 @@
 {# assume that result is given as list of dict  #}
 
 
-{% extends "layout.html" %}
+<div id="result">
 
+	{% for toon in results %}
+		<a href ="{{ toon['url'] }}">
+		<div class="card">
+			<div class="thumb">
+				<img src="{{ url_for('static', filename='res/thumb/'+ toon['site'] + '/'+ toon['picture']) }}">
+			</div>
+			<div class="info">
+				<h5>{{ toon['title'] }} <br><small> {{ toon['author'] }} </small></h5>
+				<div class="desc"> {{ toon['introduction'] }} </div>
+			</div>
+			</a>
+			<div class="rating" data-score="0" toon-id="{{ toon['id'] }}">
+			</div>
+		</div>
 
-{% block body %}
-
-	<div class="input-group">
-		<input type="text" class="form-control" placeholder="제목으로 검색">
-		<div class="input-group-addon"><span class="glyphicon glyphicon-search"></span></div>
-	</div>
-
-
-<style type="text/css">
-.card { width: 300px; height: 93px; float: left; padding: 10px; }
-
-.card .thumb { width: 103px; height: 73px; }
-.card .thumb img { max-width:100%; max-height:100%; }
-.card .info { float: left; text-overflow: ellipsis;}
-#author_name { }
-</style>
-
-{% for toon in toons %}
-<a href ="{% toon['url'] %}">
-<div class="card">
-	<div class="thumb">
-		<img src="{{ url_for('static', filename='res/thumb/'+{% toon['site'] %}+'/'+{% toon['picture'] %}) }}">
-	</div>
-	<div class="info">
-		<h6>{% toon['title'] %} <small> {% toon['author'] %} </small></h6>
-		<p> {% toon['intro'] %} </p>
-	</div>
+	{% else %}
+		<h3>No matching webtoon</h3>
+	{% endfor %}
 </div>
-</a>
-{% endfor %}
-
-{% endblock %}
-		
+	

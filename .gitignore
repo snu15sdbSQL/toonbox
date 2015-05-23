@@ -1,10 +1,12 @@
 application/models/crawler/naver/*
 application/models/crawler/daum/*
+application/static/res/thumb/*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *.dump
+*.swp
 
 
 # Distribution / packaging
