@@ -10,5 +10,6 @@ def get_webtoons_by_title():
 	author = request.form['author']
 	is_finished = request.form['is_finished']
 	results = webtoon_manager.get_webtoons_by_title(title, author, is_finished)
-	return render_template('search_result.html', results=results)
+	return json.dumps(results)
+#	return render_template('search_result.html', results=results)
 
