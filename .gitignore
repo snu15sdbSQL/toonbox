@@ -6,6 +6,7 @@ application/static/res/thumb/*
 __pycache__/
 *.py[cod]
 *.dump
+*.swp
 
 
 # Distribution / packaging

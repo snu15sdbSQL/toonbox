@@ -2,6 +2,11 @@
 
 
 <div id="result">
+
+{% if results|length == 0 %}
+<h3>No matching webtoon</h3>
+{% endif %}
+
 {% for toon in results %}
 <a href ="{{ toon['url'] }}">
 <div class="card">
@@ -9,11 +14,14 @@
 		<img src="{{ url_for('static', filename='res/thumb/'+ toon['site'] + '/'+ toon['picture']) }}">
 	</div>
 	<div class="info">
-		<h5>{{ toon['title'] }} <small> {{ toon['author'] }} </small></h5>
+		<h5>{{ toon['title'] }} <br><small> {{ toon['author'] }} </small></h5>
 		<div class="desc"> {{ toon['introduction'] }} </div>
 	</div>
+	</a>
+	<div class="rating" data-score="0" toon-id="{{ toon['id'] }}">
+	</div>
 </div>
-</a>
+
 {% endfor %}
 </div>
 	

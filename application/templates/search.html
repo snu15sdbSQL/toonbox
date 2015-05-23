@@ -1,6 +1,10 @@
 {% extends "layout.html" %}
 {% block head %}
 	<script src="{{ url_for('static', filename='js/search.js')}}"></script>
+	<script src="{{ url_for('static', filename='js/jquery.raty.js')}}"></script>
+	<script>
+		var raty_img = "{{url_for('static', filename='res/raty/') }}";
+	</script>
 {% endblock %}
 
 {% block body %}
