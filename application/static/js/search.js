@@ -3,7 +3,7 @@ $(document).ready(function(){
 	$("#search_btn").click(function() {
 		var title = $("#search_input").val(); //string
 		var author = $("#author_input").val(); //string
-		var is_finished = $("#finished_input").is(":checked");  //boolean
+		var is_finished = $("#finished_input").is(":checked").toString();  //string
 		get_webtoons_by_title(title, author, is_finished);
 	});
 	
@@ -19,15 +19,15 @@ function get_webtoons_by_title(title, author, is_finished) {
 	           "is_finished": is_finished},
 	    success:function(response){
 		console.log(response); 
-		/*$('#result').replaceWith(response);
+		$('#result').replaceWith(response);
 		$('.rating').raty({
                 	path: raty_img,
 			click: function(score, evt) {
-				console.log(score)
-				`console.log($(this).attr('toon-id'));
+				console.log(score);
+				console.log($(this).attr('toon-id'));
 				//post_webtoon_score(user_id, $(this).attr('toon-id'), score);
 			}
-        	});*/
+        	});
 
 	    },
 	    error: function(){

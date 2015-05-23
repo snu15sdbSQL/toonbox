@@ -1,3 +1,4 @@
+#-*- coding:utf-8 -*-
 from application import db
 from sqlalchemy import text
 from schema import Webtoon
@@ -8,9 +9,12 @@ def get_all_webtoons (con):
 def get_webtoons_by_title(title, author, is_finished):
 	con = db.engine.connect()
 	trans = con.begin()
-	
-	sql =  text("select * from webtoon where title = :title")
-	rawresult = con.execute(sql, title = title)	
+
+	if is_finished == "true":	
+		sql = text("select * from webtoon where title like '%" + title +"%' and author like '%"+author+"%' and finished = true")
+	else :
+		sql = text("select * from webtoon where title like '%" + title +"%' and author like '%"+author+"%'")
+	rawresult = con.execute(sql)
 	trans.commit()
 	result = []
 	for row in rawresult:
