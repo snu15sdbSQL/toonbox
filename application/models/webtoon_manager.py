@@ -7,5 +7,5 @@ def get_all_webtoons (con):
 
 def get_webtoons_by_title(title, author, is_finished):
 	cmd =  text("select * from webtoon where title = :title")
-	return db.execute.engine(cmd)
+	return db.engine.execute(cmd)
 	# return Webtoon.query.filter(Webtoon.title == title).all()
