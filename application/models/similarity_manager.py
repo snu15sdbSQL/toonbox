@@ -19,3 +19,7 @@ def update_similarity(con, id1, id2, sim):
 	except:
 		trans.rollback()
 		raise
+
+def get_similarity(con):
+	cmd = text("select webtoon_id1, webtoon_id2, similarity from webtoon__similarity")
+	return con.execute(cmd)
