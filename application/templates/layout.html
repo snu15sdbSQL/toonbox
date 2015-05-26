@@ -21,20 +21,21 @@
 <body>
 
 	<div id = "container">
-
-		<div class="page-header">
-			<div class = "col-xs-18">
-				<h1 id = "page_header">TOONBOX</h1>
-			</div>
-			<div class = "col-xs-6">
+	<div id = "header_div" class = "row">		
+		<div class = "col-xs-16">		
+			<h1 id = "page_header">TOONBOX</h1>
+		</div>
+		<div class = "col-xs-8">
+		
 				{% if session.user_id %}
-					<h5> {{session.user_name}}님</h5>
-					<a href="{{ url_for('logout') }}"><button type="button" class="btn btn-default">로그아웃</button></a>
+					
+					<a style = "float:right; margin-top:57px;" href="{{ url_for('logout') }}">로그아웃</a>
+					<h5 style = "float:right; margin-top:60px;"> {{session.user_name}} 님/ </h5>
 				{% else %}
 					<h3> 로그인해주세요</h3>
 				{% endif %}
-			</div>
 		</div>
+	</div>
 		<div class = "row" id = "nav_div">
 			<ul class="nav nav-justified">
 				<li role="presentation" class="nav_category"><a href="{{ url_for('main')}}">메인</a></li>

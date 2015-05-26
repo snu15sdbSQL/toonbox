@@ -4,6 +4,10 @@
 	margin-right: auto;
 }
 
+#header_div {
+	margin-top: 20px;
+}
+
 #page_header {
 	font-weight: 700;
 }
@@ -11,6 +15,7 @@
 #nav_div {
 	margin-bottom: 50px;
 	background-color: #c5eff7;
+	margin-top: 20px;
 }
 
 .nav_category > a{
