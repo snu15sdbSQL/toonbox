@@ -15,3 +15,22 @@ def get_score_vec (con, userId):
 	cmd = text("select webtoon_id, score from user__webtoon where user_id = :userId")
 	return con.execute(cmd, userId = userId)
 
+def evaluate_webtoon (userId, webtoonId, score):
+	con = db.engine.connect()
+	trans = con.begin()
+	selectCmd = text("select id from user__webtoon where user_id = :userId and webtoon_id = :webtoonId")
+	updateCmd = text("update user__webtoon set score = :score where id = :ID")
+	insertCmd = text("insert into user__webtoon values (null, :userId, :webtoonId, :score)")
+	try:
+		rawResult = con.execute(selectCmd, userId = userId, webtoonId = webtoonId)
+		result = []
+		for row in rawResult:
+			result.append({0: row[0]})
+		if len(result):
+			con.execute(updateCmd, score = score, ID = result[0][0])
+		else:
+			con.execute(insertCmd, userId = userId, webtoonId = webtoonId, score = score)
+		trans.commit()
+	except:
+		trans.rollback()
+		raise

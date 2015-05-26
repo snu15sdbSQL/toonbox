@@ -33,4 +33,3 @@ def get_webtoons_by_title(title, author, is_finished):
 def get_webtoons_by_id(con, webtoonId):
 	cmd = text("select * from webtoon where id = :webtoonId")
 	return con.execute(cmd, webtoonId = webtoonId)
-	
