@@ -2,7 +2,7 @@
 from application import app
 from flask import Flask, redirect, url_for, render_template
 from application.controllers import update_similarity
-from application.controllers import recommend
+from application.controllers import recommend_webtoon
 
 @app.route('/')
 @app.route('/main')
@@ -10,9 +10,9 @@ def main():
    return render_template('main.html')
 
 
-@app.route('/evaluate')
-def evaluate():
-   return render_template('evaluate.html')
+@app.route('/recommend')
+def recommend():
+   return render_template('recommend.html', results = recommend_webtoon.recommend(2))
 
 @app.route('/search')
 def search():
@@ -29,10 +29,10 @@ def update_sim():
 
 @app.route('/test_recommend')
 def test_recommend():
-   print(recommend.recommend(2))   
+   print(recommend_webtoon.recommend(2))   
    return 'success'
 
 @app.route('/load_sim')
 def load_sim():
-   recommend.similarity_loading()
+   recommend_webtoon.similarity_loading()
    return 'success'

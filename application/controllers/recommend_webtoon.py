@@ -39,8 +39,15 @@ def recommend(userId):
 	count = 0
 	for webtoon in psudo_score_list:
 		if(not(webtoon[0] in score_vec)):
-			recommend_list.append(webtoon)
+			recommend_list.append(webtoon[0])
 			count += 1
-		if(count == 10):
+		if(count == 12):
 			break
-	return recommend_list
+
+	recommend_dic_list = []
+	for webtoonId in recommend_list:
+		rawResult = webtoon_manager.get_webtoons_by_id(con, webtoonId)
+		for row in rawResult:
+			recommend_dic_list.append({'id': row['id'], 'title': row['title'], 'url': row['url'], 'author': row['author'],
+					'site': row['site'], 'introduction': row['introduction'], 'picture': row['picture']})
+	return recommend_dic_list	

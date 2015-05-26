@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% block head %}
+        <script src="{{ url_for('static', filename='js/jquery.raty.js')}}"></script>
+        <script>
+                var raty_img = "{{url_for('static', filename='res/raty/') }}";
+        </script>
+
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/search_result.css')}}">
+{% endblock %}
+
+{% block body %}
+
+<div id="result">
+
+	{% for toon in results %}
+		<div class="card">
+			<a href ="{{ toon['url'] }}">
+			<div class="thumb">
+				<img src="{{ url_for('static', filename='res/thumb/'+ toon['site'] + '/'+ toon['picture']) }}">
+			</div>
+			<div class="info">
+				<h5>{{ toon['title'] }} <br><small> {{ toon['author'] }} </small></h5>
+				<div class="desc"> {{ toon['introduction'] }} </div>
+			</div>
+			</a>
+			<div class="rating" data-score="0" toon-id="{{ toon['id'] }}">
+			</div>
+		</div>
+
+	{% else %}
+		<h3>No matching webtoon</h3>
+	{% endfor %}
+</div>
+{% endblock %}
+
+
+
