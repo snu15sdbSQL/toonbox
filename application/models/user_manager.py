@@ -1,4 +1,5 @@
 from application import db
+from sqlalchemy import text
 from schema import User
 
 
@@ -19,3 +20,19 @@ def get_all_users():
 	users = db.engine.execute('select * from user')
 	return users
 
+def exists_check(email):
+	sql = text("select count(*) from user where email =" + email)
+	raw_result = db.engine.execute(sql)
+	if raw_result == 0:
+		return False
+	else:
+		return True
+
+
+def get_user_by_email(email):
+	sql = text("select * from user where email =" + email)
+	raw_user = db.engine.execute(sql)
+	user = {}
+	user['id'] = raw_user['id']
+	user['name'] = raw_user['name']
+	return user

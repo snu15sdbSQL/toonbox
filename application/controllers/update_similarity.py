@@ -33,11 +33,14 @@ def calculate_similarity(con, id1, id2):
         for row in rawResult:
                 result.append({'user_id': row[0], 'score1': row[1], 'score2' : row[2]})
 
-        size1 = 0
-        size2 = 0
-        total = 0.
+        size1 = 0.
+        size2 = 0.
+	distance = 0.
         for dic in result:
-                total += dic['score1'] * dic['score2']
+                distance += (dic['score1'] - dic['score2']) ** 2
                 size1 += dic['score1'] ** 2
                 size2 += dic['score2'] ** 2
-        return total / (size1 * size2) ** 0.5
+	if (size1 > size2):
+		return 1 - (distance / size1) ** 0.5
+	else:
+		return 1 - (distance / size2) ** 0.5

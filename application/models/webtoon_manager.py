@@ -20,6 +20,7 @@ def get_webtoons_by_title(title, author, is_finished):
 	result = []
 	for row in rawresult:
 		dic = {}
+		dic['id'] = row['id']
 		dic['title'] = row['title']
 		dic['url'] = row['url']
 		dic['author'] = row['author']
@@ -29,4 +30,9 @@ def get_webtoons_by_title(title, author, is_finished):
 		result.append(dic)
 	
 	return result
+
+
+def get_webtoons_by_id(con, webtoonId):
+	cmd = text("select * from webtoon where id = :webtoonId")
+	return con.execute(cmd, webtoonId = webtoonId)
 
