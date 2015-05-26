@@ -1,3 +1,4 @@
+#-*- coding:utf-8 -*-
 from application import db
 from sqlalchemy import text
 from schema import Webtoon
@@ -6,6 +7,26 @@ def get_all_webtoons (con):
 	return con.execute("select id from webtoon")
 
 def get_webtoons_by_title(title, author, is_finished):
-	cmd =  text("select * from webtoon where title = :title")
-	return db.engine.execute(cmd)
-	# return Webtoon.query.filter(Webtoon.title == title).all()
+
+	con = db.engine.connect()
+	trans = con.begin()
+
+	if is_finished == "true":	
+		sql = text("select * from webtoon where title like '%" + title +"%' and author like '%"+author+"%' and finished = true")
+	else :
+		sql = text("select * from webtoon where title like '%" + title +"%' and author like '%"+author+"%'")
+	rawresult = con.execute(sql)
+	trans.commit()
+	result = []
+	for row in rawresult:
+		dic = {}
+		dic['title'] = row['title']
+		dic['url'] = row['url']
+		dic['author'] = row['author']
+		dic['site'] = row['site']
+		dic['introduction'] = row['introduction']
+		dic['picture'] = row['picture']
+		result.append(dic)
+	
+	return result
+
