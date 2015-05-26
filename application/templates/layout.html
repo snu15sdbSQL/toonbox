@@ -24,6 +24,11 @@
 
 		<div class="page-header">
 			<h1 id = "page_header">TOONBOX</h1>
+			{% if session.user_id %}
+				<h3> {session.name}님</h3>
+			{% else %}
+				<h3> 로그인해주세요</h3>
+			{% endif %}
 		</div>
 		<div class = "row" id = "nav_div">
 			<ul class="nav nav-justified">

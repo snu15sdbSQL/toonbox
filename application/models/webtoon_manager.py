@@ -7,6 +7,7 @@ def get_all_webtoons (con):
 	return con.execute("select id from webtoon")
 
 def get_webtoons_by_title(title, author, is_finished):
+
 	con = db.engine.connect()
 	trans = con.begin()
 
@@ -30,6 +31,8 @@ def get_webtoons_by_title(title, author, is_finished):
 	
 	return result
 
+
 def get_webtoons_by_id(con, webtoonId):
 	cmd = text("select * from webtoon where id = :webtoonId")
 	return con.execute(cmd, webtoonId = webtoonId)
+
