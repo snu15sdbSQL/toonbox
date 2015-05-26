@@ -11,11 +11,11 @@ def login():
 	else:
 		email = request.form['email']
 		password = request.form['password']
-		login_success = user_manager.login_check(email,password)
-		if login_success:
+		user_exists = user_manager.login_check(email,password)
+		if user_exists:
 			user = user_manager.get_user_by_email(email)
-			session['user_name'] = user.name
-			session['user_id'] = user.id
+			session['user_name'] = user['name']
+			session['user_id'] = user['user_id']
 			return redirect(url_for('main'))
 		else:
 			return redirect(url_for('login'))

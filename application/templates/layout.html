@@ -25,7 +25,7 @@
 		<div class="page-header">
 			<h1 id = "page_header">TOONBOX</h1>
 			{% if session.user_id %}
-				<h3> {session.name}님</h3>
+				<h3> {{session.user_name}}님 안녕하세요!</h3>
 			{% else %}
 				<h3> 로그인해주세요</h3>
 			{% endif %}
