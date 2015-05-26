@@ -37,3 +37,10 @@ def signup():
 		else:
 			return '이미 해당 이메일의 유저가 존재합니다.'
 
+
+@app.route('/logout')
+def logout():
+	session.clear()
+	return redirect(url_for('login'))
+
+
