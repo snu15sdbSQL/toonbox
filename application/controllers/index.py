@@ -3,8 +3,8 @@ from application import app
 from flask import Flask, redirect, url_for, render_template, session
 from application.controllers import update_similarity
 from application.controllers import recommend_webtoon
-from application.models import webtoon_manager
-from application.models import uw_manager
+from application.models import webtoon_manager, uw_manager
+
 
 # @app.route('/')
 @app.route('/main')
@@ -36,7 +36,7 @@ def update_sim():
 
 @app.route('/test_recommend')
 def test_recommend():
-   print(recommend_webtoon.recommend(2))   
+   print(uw_manager.get_evaluation(session['user_id']))
    return 'success'
 
 @app.route('/load_sim')
