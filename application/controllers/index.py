@@ -18,9 +18,9 @@ def recommend():
 def search():
    return render_template('search.html')
 
-@app.route('/evaluate_history')
-def evaluate_history():
-   return render_template('evaluate_history.html')
+@app.route('/evaluation_history')
+def evaluation_history():
+   return render_template('evaluation_history.html')
 
 @app.route('/update_sim')
 def update_sim():
