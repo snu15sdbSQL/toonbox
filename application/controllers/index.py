@@ -3,11 +3,18 @@ from application import app
 from flask import Flask, redirect, url_for, render_template, session
 from application.controllers import update_similarity
 from application.controllers import recommend_webtoon
+from application.models import webtoon_manager
+from application.models import uw_manager
 
 # @app.route('/')
 @app.route('/main')
 def main():
-   return render_template('main.html')
+   webtoon_num = webtoon_manager.total_webtoon_num()
+   score_num = uw_manager.total_score_num()
+   number = {}
+   number['toon'] = webtoon_num
+   number['score'] = score_num
+   return render_template('main.html', number = number)
 
 
 @app.route('/recommend')

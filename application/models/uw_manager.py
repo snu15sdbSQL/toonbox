@@ -35,3 +35,10 @@ def evaluate_webtoon (userId, webtoonId, score):
 	except:
 		trans.rollback()
 		raise
+
+def total_score_num ():
+	rawResult = db.engine.execute("select count(*) from user__webtoon")
+	result = []
+	for row in rawResult:
+		result.append(row[0])
+	return result[0]

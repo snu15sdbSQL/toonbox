@@ -35,4 +35,9 @@ def get_webtoons_by_title(title, author, is_finished):
 def get_webtoons_by_id(con, webtoonId):
 	cmd = text("select * from webtoon where id = :webtoonId")
 	return con.execute(cmd, webtoonId = webtoonId)
-
+def total_webtoon_num():
+	rawResult = db.engine.execute("select count(*) from webtoon")
+	result = []
+	for row in rawResult:
+		result.append(row[0])
+	return result[0]

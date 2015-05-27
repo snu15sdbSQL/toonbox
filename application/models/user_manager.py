@@ -48,3 +48,4 @@ def get_user_by_email(email):
 		user['user_id'] = row['id']
 		user['name'] = row['name']
 	return user
+
