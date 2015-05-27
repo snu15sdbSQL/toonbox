@@ -12,7 +12,7 @@ def main():
 
 @app.route('/recommend')
 def recommend():
-   return render_template('recommend.html', results = recommend_webtoon.recommend(2))
+   return render_template('recommend.html', results = recommend_webtoon.recommend(session['user_id']))
 
 @app.route('/search')
 def search():

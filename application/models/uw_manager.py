@@ -1,3 +1,4 @@
+from application import db
 from sqlalchemy import text
 from schema import User_Webtoon
 
