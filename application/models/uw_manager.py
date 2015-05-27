@@ -35,3 +35,13 @@ def evaluate_webtoon (userId, webtoonId, score):
 	except:
 		trans.rollback()
 		raise
+
+def get_evaluation (userId):
+	con = db.engine.connect()
+	cmd = text("select * from (select webtoon_id as id, score from user__webtoon where user_id = :userId) temp natural join webtoon")
+	rawResult = con.execute(cmd, userId = userId)
+	result = []
+	for row in rawResult:
+		result.append({'id': row['id'], 'title': row['title'], 'url': row['url'], 'author': row['author'],
+			'site': row['site'], 'introduction': row['introduction'], 'picture': row['picture'], 'score': row['score']})
+	return result
