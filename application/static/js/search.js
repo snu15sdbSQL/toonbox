@@ -1,15 +1,19 @@
 $(document).ready(function(){
 
 	$("#search_btn").click(function() {
-		var title = $("#search_input").val(); //string
-		var author = $("#author_input").val(); //string
-		var is_finished = $("#finished_input").is(":checked").toString();  //string
-		get_webtoons_by_title(title, author, is_finished);
+		search_handler();
 	});
-	
-	
-
+	$(document).keypress(function(e) {
+    		if(e.which == 13) search_handler();
+    	});
 });
+	
+function search_handler() {
+	var title = $("#search_input").val(); //string
+	var author = $("#author_input").val(); //string
+	var is_finished = $("#finished_input").is(":checked").toString();  //string
+	get_webtoons_by_title(title, author, is_finished);
+}
 
 function get_webtoons_by_title(title, author, is_finished) {
 	$.ajax({
@@ -19,14 +23,13 @@ function get_webtoons_by_title(title, author, is_finished) {
 	           "author": author,
 	           "is_finished": is_finished},
 	    success:function(response){
-			console.log(response); 
 			$('#result').replaceWith(response);
 			$('.rating').raty({
 	                	path: raty_img,
 				click: function(score, evt) {
 					console.log(score);
 					console.log($(this).attr('toon-id'));
-					//post_webtoon_score(user_id, $(this).attr('toon-id'), score);
+					post_webtoon_score($(this).attr('user-id'), $(this).attr('toon-id'), score);
 				}
 	        	});
 
@@ -42,7 +45,7 @@ function get_webtoons_by_title(title, author, is_finished) {
 
 function post_webtoon_score(id, webtoon, score) {
 	$.ajax({
-		url: '/post_webtoon_score',
+		url: '/evaluate_webtoon',
 		type: 'POST',
 		data: {"id": id, "webtoon": webtoon, "score": score},
 		success:function(resp) {
