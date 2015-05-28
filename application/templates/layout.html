@@ -6,12 +6,16 @@
 	<title>Toonbox</title>
 	<meta charset="utf-8">
 	
-
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
 	<script src="{{ url_for('static', filename='js/jquery-1.11.1.min.js') }}"></script>
 	<script src="{{ url_for('static', filename='js/bootstrap.min.js')}}"></script>
+	<script src="{{ url_for('static', filename='js/noty/packaged/jquery.noty.packaged.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/webtoon_list.js') }}"></script>
+	<script type="text/javascript"> var user_id = {{ session.user_id }}; </script>
 
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/layout.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/animate.css') }}">
 
 	{% block head %}
 	{% endblock %}

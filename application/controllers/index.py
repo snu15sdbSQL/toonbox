@@ -19,7 +19,7 @@ def main():
 
 @app.route('/recommend')
 def recommend():
-   return render_template('recommend.html', results = recommend_webtoon.recommend(session['user_id']))
+   return render_template('webtoon_list.html', results = recommend_webtoon.recommend(session['user_id']))
 
 @app.route('/search')
 def search():
@@ -28,7 +28,7 @@ def search():
 @app.route('/evaluation_history')
 def evaluation_history():
    results = uw_manager.get_evaluation(session['user_id'])
-   return render_template('evaluation_history.html', results = results)
+   return render_template('webtoon_list.html', results = results)
 
 @app.route('/update_sim')
 def update_sim():
