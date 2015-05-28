@@ -37,8 +37,8 @@ class Webtoon_Similarity(db.Model):
 	id		= db.Column(db.Integer, primary_key = True)
 	webtoon_id1	= db.Column(db.Integer, db.ForeignKey('webtoon.id'))
 	webtoon1	= db.relationship('Webtoon', foreign_keys = [webtoon_id1],
-		backref = db.backref('webtoon_similarity', cascade = 'all, delete-orphan', lazy = 'dynamic'))
+		backref = db.backref('webtoon_similarity1', cascade = 'all, delete-orphan', lazy = 'dynamic'))
 	webtoon_id2	= db.Column(db.Integer, db.ForeignKey('webtoon.id'))
 	webtoon2	= db.relationship('Webtoon', foreign_keys = [webtoon_id2],
-		backref = db.backref('webtoon_similarity', cascade = 'all, delete-orphan', lazy = 'dynamic'))
+		backref = db.backref('webtoon_similarity2', cascade = 'all, delete-orphan', lazy = 'dynamic'))
 	similarity	= db.Column(db.Float)
