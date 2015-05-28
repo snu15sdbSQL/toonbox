@@ -27,7 +27,8 @@ def search():
 
 @app.route('/evaluation_history')
 def evaluation_history():
-   return render_template('evaluation_history.html')
+   results = uw_manager.get_evaluation(session['user_id'])
+   return render_template('evaluation_history.html', results = results)
 
 @app.route('/update_sim')
 def update_sim():

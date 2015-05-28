@@ -1,40 +1,37 @@
 {% extends "layout.html" %}
 
 {% block head %}
-        <link rel = "stylesheet" type = "text/css" href="{{ url_for('static', filename='css/evaluate.css')}}">
+	<script src="{{ url_for('static', filename='js/jquery.raty.js')}}"></script>
+	<script>
+		var raty_img = "{{url_for('static', filename='res/raty/') }}";
+	</script>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/search_result.css')}}">
+	<script src="{{ url_for('static', filename='js/evaluation_history.js') }}"></script>
 {% endblock %}
 
 
 {% block body %}
+<div id="result">
+<div id="centerwrapper">
+	{% for toon in results %}
+		<div class="card">
+			<a href ="{{ toon['url'] }}">
+			<div class="thumb">
+				<img src="{{ url_for('static', filename='res/thumb/'+ toon['site'] + '/'+ toon['picture']) }}">
+			</div>
+			<div class="info">
+				<h5>{{ toon['title'] }} <br><small> {{ toon['author'] }} </small></h5>
+				<div class="desc"> {{ toon['introduction'] }} </div>
+			</div>
+			</a>
+			<div class="rating" data-score="0" user-id ="{{ session.user_id }}" toon-id="{{ toon['id'] }}" toon-score="{{ toon['score'] }}">
+			</div>
+		</div>
 
-
-
-<div class="row">
-<div class="col-4 pic1">
-        <ul>
-                <li><img src="{{ url_for('static', filename='res/img/cheeseinthetrap.png') }}" width="200"></li>
-                <li><img src="{{ url_for('static', filename='res/img/fashion_king.jpg') }}" width="200"></li>
-                <li><img src="{{ url_for('static', filename='res/img/chosun.jpg') }}" width="200"></li>
-        </ul>
+	{% else %}
+		<h3>평가하신 웹툰이 없습니다</h3>
+	{% endfor %}
 </div>
-
-<div class="col-4 pic2">
-        <ul>
-                <li><img src="{{ url_for('static', filename='res/img/grae.jpg') }}" width="200"></li>
-                <li><img src="{{ url_for('static', filename='res/img/narmstory.jpg') }}" width="200"></li>
-                <li><img src="{{ url_for('static', filename='res/img/youngcatolddog.jpg') }}" width="200"></li>
-        	<li><img src="{{ url_for('static', filename='res/img/cheeseinthetrap.png') }}" width="200"></li>
-	</ul>
-</div>
-
-<div class="col-4 pic3">
-        <ul>
-                <li><img src="{{ url_for('static', filename='res/img/narmstory.jpg') }}" width="200"></li>
-                <li><img src="{{ url_for('static', filename='res/img/fashion_king.jpg') }}" width="200"></li>
-                <li><img src="{{ url_for('static', filename='res/img/grae.jpg') }}" width="200"></li>
-        </ul>
-</div>
-
 </div>
 
 {% endblock %}
