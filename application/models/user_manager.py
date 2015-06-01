@@ -13,6 +13,11 @@ def add_user(email, password, name):
 	db.session.commit()
 	return user.id
 
+def delete_user(id):
+	sql = text("delete from user where id = :id")
+	db.engine.execute(sql, id = id)
+		
+
 def login_check(email, password):
 	sql = text("select id from user where email = :email and password = :password")
 	raw_result = db.engine.execute(sql, email = email, password = password)
