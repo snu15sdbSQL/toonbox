@@ -11,27 +11,6 @@ function draw_star() {
                 }
         });
 }
-	
-
-function get_webtoons_by_title(title, author, is_finished) {
-	$.ajax({
-	    url: '/get_webtoons_by_title',
-	    type:'POST',
-	    data: {"title": title,
-	           "author": author,
-	           "is_finished": is_finished},
-	    success:function(response){
-			$('#result').replaceWith(response);
-			draw_star();
-	    },
-	    error: function(){
-	      	console.log("error");
-	    },
-	    complete:function(){
-	      	console.log('complete');
-           }
-  	});
-}
 
 function post_webtoon_score(id, webtoon, score, title) {
         $.ajax({
