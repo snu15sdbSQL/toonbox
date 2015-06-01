@@ -46,3 +46,8 @@ def signup():
 def logout():
 	session.clear()
 	return redirect(url_for('login'))
+
+@app.route('/delete_user')
+def delete_user():
+	user_manager.delete_user(session['user_id'])
+	return 'success'
