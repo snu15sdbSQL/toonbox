@@ -12,7 +12,10 @@ function search_handler() {
 	var title = $("#search_input").val(); //string
 	var author = $("#author_input").val(); //string
 	var is_finished = $("#finished_input").is(":checked").toString();  //string
-	get_webtoons_by_title(title, author, is_finished, user_id);
+	if(title == "" && author == "")
+		alert("제목이나 작가를 입력해주세요");
+	else
+		get_webtoons_by_title(title, author, is_finished, user_id);
 }
 
 function get_webtoons_by_title(title, author, is_finished, user_id) {
